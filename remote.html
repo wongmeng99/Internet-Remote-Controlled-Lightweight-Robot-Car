@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+   <head>
+      <title> Internet Remote </title>
+      <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+   </head>
+   
+ 
+   <body>
+    <div style="text-align:center">
+        <center>
+        <h1><span style="color:#00007f;"> Internet Remote-Control</span> <br>
+        <span style="color:#2db83d">Lightweight Robot Car</h1>
+        </center>
+        <br><br>
+        
+        <div style="float:center">
+        
+        <img src="http://192.168.68.108:8081" /> 
+        </div>
+        <div style="float:centre" height:400px; width 300px;>
+
+    
+    
+            
+        <centre><a href="#" id="forward"><img style="height:65px"src="{{ url_for('static',filename="forward.png")}}"></a><br><br></center>
+        <a href="#" id="left"> <img style="height:65px"src="{{ url_for('static',filename="left.png")}}"></a>
+        <a href="#" id="right"><img style="height:65px"src="{{ url_for('static',filename="right.png")}}"></a><br><br>
+        <center><a href="#" id="backward"><img style="height:65px"src="{{ url_for('static',filename="reverse.png")}}"><br> </a></center>
+        </div>
+        
+        <script>
+        $( document ).ready(function(){
+$("#forward").on("mousedown", function() {
+             $.get('/forward_side');
+             }).on('mouseup', function() {
+             $.get('/stop');
+            });
+            $("#backward").on("mousedown", function() {
+             $.get('/backward_side');
+             }).on('mouseup', function() {
+             $.get('/stop');
+            });
+            $("#left").on("mousedown", function() {
+             $.get('/left_side');
+             }).on('mouseup', function() {
+             $.get('/stop');
+            });
+            $("#right").on("mousedown", function() {
+             $.get('/right_side');
+             }).on('mouseup', function() {
+             $.get('/stop');
+            });
+        });
+        </script>
+
+   </body>
+   
+
+</html>
+
+
