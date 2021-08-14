@@ -1,0 +1,44 @@
+from flask import Flask
+from flask import render_template, request
+import serial
+import time
+
+
+ser = serial.Serial('/dev/ttyACM0', 9600, timeout=1)
+ser.flush()
+
+app = Flask(__name__)
+
+@app.route("/")
+def remote():
+ 
+   return render_template('internetremote.html')
+
+
+@app.route('/left_side')
+def left_side():
+    ser.write(b"3\n")
+    return 'true'
+
+@app.route('/right_side')
+def right_side():
+    ser.write(b"4\n")
+    return 'true'
+
+@app.route('/forward_side')
+def up_side():
+   ser.write(b"1\n")
+   return 'true'
+
+@app.route('/backward_side')
+def down_side():
+   ser.write(b"2\n")
+   return 'true'
+
+@app.route('/stop')
+def stop():
+   ser.write(b"5\n")
+   return 'true'
+if __name__ == "__main__":
+    print("start")
+ app.run(host='0.0.0.0', port=90, debug=True)
